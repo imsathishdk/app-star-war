@@ -1,1 +1,100 @@
-<p>filter works!</p>
+<div class="title">
+    <h2>STAR WARS</h2>
+</div>
+<form [formGroup]="form" class="form-wrapper">
+    <fieldset class="field-set">
+        <legend><strong>Filter</strong></legend>
+        <div class="flex-filter-container">
+            <div class="flex-filter-item">
+                <label>Movies Name</label>
+                <select placeholder="Movies Name" formControlName="title">
+                    <option *ngFor="let item of filmList" [value]="item.title">
+                        {{item.title}}
+                    </option>
+                </select>
+                <span class="small-text">Select Movies Name</span>
+            </div>
+
+            <div class="flex-filter-item">
+                <label>Species</label>
+                <select placeholder="Species" formControlName="species">
+                    <option *ngFor="let item of speciecList" [value]="item.name">
+                        {{item.name}}
+                    </option>
+                </select>
+                <span class="small-text">Select Species</span>
+            </div>
+
+            <div class="flex-filter-item">
+                <label>Vehicle</label>
+                <select placeholder="Vehicle" formControlName="vehicle">
+                    <option *ngFor="let item of vehicleList" [value]="item.name">
+                        {{item.name}}
+                    </option>
+                </select>
+                <span class="small-text">Select Vehicle</span>
+            </div>
+
+            <div class="flex-filter-item">
+                <label>Starship</label>
+                <select placeholder="Starship" formControlName="starship">
+                    <option *ngFor="let item of starshipList" [value]="item.name">
+                        {{item.name}}
+                    </option>
+                </select>
+                <span class="small-text">Select Starship</span>
+            </div>
+
+            <div class="flex-filter-item">
+                <label>Birth Year</label>
+                <select placeholder="Birth Year" formControlName="birthYear">
+                    <option *ngFor="let item of peopleList" [value]="item.birth_year">
+                        {{item.birth_year}}
+                    </option>
+                </select>
+                <span class="small-text">Select Birth Year</span>
+            </div>
+
+
+        </div>
+        <br><br>
+        <div class="btn-container">
+            <button>Search</button>
+            <button (click)="reset()">Reset</button>
+        </div>
+
+    </fieldset>
+
+</form>
+
+
+<table class="form-wrapper">
+    <thead>
+        <tr>
+            <th>SL No.</th>
+            <th>Action</th>
+            <th>Character Name</th>
+            <th>Species</th>
+            <th>Birth year</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of paginatedItems(); let i = index">
+            <td>{{i+1}}</td>
+            <td><button (click)="openDetailView(i)">Detail view</button></td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.species }}</td>
+            <td>{{ item.birth_year }}</td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="defaultGridList.length>0" class="pagination">
+    <button *ngFor="let pageNumber of getPageNumbers()" (click)="setPage(pageNumber)">
+        {{ pageNumber }}
+    </button>
+</div>
+
+<div *ngIf="openDialog">
+    <app-detail-view-dialog [dataSource]="details" [isOpen]="openDialog"
+        (isOpenChange)="onModalStateChanged($event)"></app-detail-view-dialog>
+</div>

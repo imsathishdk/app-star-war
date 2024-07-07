@@ -1,0 +1,20 @@
+<div class="modal-background">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2 class="modal-title">Character Details</h2>
+      <button class="close-button" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-body">
+      <ul>
+        <li><strong>Name:</strong> {{ dataSource.name }}</li>
+        <li><strong>Height:</strong> {{ dataSource.height }} cm</li>
+        <li><strong>Mass:</strong> {{ dataSource.mass }} kg</li>
+        <li><strong>Hair Color:</strong> {{ dataSource.hair_color }}</li>
+        <li><strong>Skin Color:</strong> {{ dataSource.skin_color }}</li>
+        <li><strong>Eye Color:</strong> {{ dataSource.eye_color }}</li>
+        <li><strong>Birth Year:</strong> {{ dataSource.birth_year }}</li>
+        <li><strong>Gender:</strong> {{ dataSource.gender }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
